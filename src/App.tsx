@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import styled from 'styled-components';
 import Menu from '@src/Menu';
+import SponsorAndCosponsor from '@src/relationship/Sponsor-and-cosponsor';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -13,7 +14,7 @@ const MySider = styled(Sider)`
 `;
 
 const ContentLayout = styled(Layout)`
-  margin-left: 256px;
+  margin-left: 410px;
   background: #fff;
 `;
 
@@ -35,8 +36,10 @@ export default () => {
       </MySider>
 
       <ContentLayout>
-        <MyContent></MyContent>
-        <MyFooter>code@Eric design@Wolf</MyFooter>
+        <MyContent>
+          <SponsorAndCosponsor />
+        </MyContent>
+        <MyFooter>code@Eric design@Luna</MyFooter>
       </ContentLayout>
     </Layout>
   );

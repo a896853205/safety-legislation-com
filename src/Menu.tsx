@@ -12,11 +12,8 @@ const MenuSpan = styled.span`
 `;
 export default () => {
   return (
-    <MyMenu theme='light' mode='inline'>
+    <MyMenu theme='light' mode='inline' defaultSelectedKeys={['2']}>
       <Menu.ItemGroup key='g1' title='关联关系预览'>
-        <Menu.Item key='1'>
-          <MenuSpan>&lt;基本角色实例，基本角色类型，法案实例&gt;</MenuSpan>
-        </Menu.Item>
         <Menu.Item key='2'>
           <MenuSpan>&lt;基本角色实例，基本角色关系类型，基本角色实例&gt;</MenuSpan>
         </Menu.Item>
