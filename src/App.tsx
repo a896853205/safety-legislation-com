@@ -1,132 +1,43 @@
 import React from 'react';
 import { Layout } from 'antd';
-import Menu from '@/Menu';
+import styled from 'styled-components';
+import Menu from '@src/Menu';
 
 const { Content, Footer, Sider } = Layout;
+
+const MySider = styled(Sider)`
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+`;
+
+const ContentLayout = styled(Layout)`
+  margin-left: 256px;
+  background: #fff;
+`;
+
+const MyContent = styled(Content)`
+  margin: 24px 16px 0;
+  overflow: initial;
+`;
+
+const MyFooter = styled(Footer)`
+  text-align: center;
+`;
 
 export default () => {
   return (
     <Layout>
-      <Sider
-        theme='light'
-        style={{
-          overflow: 'auto',
-          height: '100vh',
-          position: 'fixed',
-          left: 0,
-        }}>
+      <MySider theme='light' width={410}>
         <div className='logo' />
         <Menu />
-      </Sider>
+      </MySider>
 
-      <Layout
-        className='site-layout'
-        style={{ marginLeft: 200, background: '#fff' }}>
-        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-          <div
-            className='site-layout-background'
-            style={{ padding: 24, textAlign: 'center', background: '#fff' }}>
-            ...
-            <br />
-            Really
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            long
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            ...
-            <br />
-            content
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
-      </Layout>
+      <ContentLayout>
+        <MyContent></MyContent>
+        <MyFooter>code@Eric design@Wolf</MyFooter>
+      </ContentLayout>
     </Layout>
   );
 };
