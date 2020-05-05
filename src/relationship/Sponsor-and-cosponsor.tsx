@@ -2,22 +2,27 @@ import React from 'react';
 import {
   Breadcrumb,
   Typography,
-  AutoComplete,
+  Select,
   Button,
   Space,
-  Input,
   Tag,
   Table,
-  Statistic
+  Statistic,
+  Spin,
 } from 'antd';
 
 import styled from 'styled-components';
 
 const { Title } = Typography;
 const { Column } = Table;
+// const { Option } = Select;
 
 const MarginBottom = styled.div`
   margin-bottom: 30px;
+`;
+
+const MySelect = styled(Select)`
+  width: 240px;
 `;
 
 interface ICosponsor {
@@ -61,6 +66,12 @@ export default () => {
     },
   ];
 
+  const SelectSearch = () => {
+    // let res = axios(url)
+    // let options = stringToOption(res.data);
+    // setOptions(options);
+  };
+
   return (
     <>
       <MarginBottom>
@@ -76,12 +87,19 @@ export default () => {
       </MarginBottom>
       <MarginBottom>
         <Space>
-          <AutoComplete
+          <MySelect
+            allowClear
+            labelInValue
+            showArrow={false}
+            placeholder='Select users'
+            notFoundContent={<Spin size='small' />}
+            filterOption={false}
+            onSearch={SelectSearch}
             onChange={() => {}}
-            onSelect={() => {}}
-            placeholder='sponsor name'>
-            <Input />
-          </AutoComplete>
+            // {data.map(d => (
+            //   <Option key={d.value}>{d.text}</Option>
+            // ))}
+          ></MySelect>
           <Button type='primary'>查询</Button>
         </Space>
       </MarginBottom>
