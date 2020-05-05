@@ -1,3 +1,4 @@
 import * as DominConfigs from './domin-constants';
 
-export const CREATE_ENTERPRISE_REGISTRATION = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_SYS}/personList`; // 创建登记测试
+export const QUERY_PERSON_LIST = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_SYS}/personList`;
+export const QUERY_SPONSOR_AND_COSPONSOR = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/sponsorAndCosponsor`;

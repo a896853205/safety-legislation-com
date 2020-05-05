@@ -13,6 +13,7 @@ export const DOMAIN = _DOMAIN[SAP_CONTROL];
 // 模块
 export const PART = {
   OPT_SYS: '/sys',
+  OPT_RELATIONSHIP: '/relationship'
 };
 
 // 返回码

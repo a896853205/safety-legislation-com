@@ -28,17 +28,30 @@ const MySelect = styled(Select)`
   width: 240px;
 `;
 
-interface ICosponsor {
-  billNumber: string;
-  sponsor: string;
-  relationship: string;
-  cosponsor: string[];
-}
-
 interface ISelectOption {
   key: string;
   value: string;
   text: string;
+}
+
+interface ICosponsor {
+  uuid: string;
+  cosponsor: { uuid: string; name: string };
+}
+
+interface IRelationship {
+  uuid: string;
+  number: string;
+  name: string;
+  cosponsors: ICosponsor[];
+}
+interface IRelationshipRes {
+  tableData: {
+    totalNum: number;
+    page: number;
+    data: IRelationship[];
+  };
+  relativeBillNum: number;
 }
 
 const optionDataPack = (
@@ -57,44 +70,14 @@ export default () => {
   const [options, setOptions] = useState<ISelectOption[]>([]);
   const [selectFetch, setSelectFetch] = useState(false);
   const [personUuid, setPersonUuid] = useState('');
-
-  let data: ICosponsor[] = [
-    {
-      billNumber: '10010',
-      sponsor: 'sponsor',
-      relationship: '联合提出',
-      cosponsor: ['Eric', 'Luna'],
-    },
-    {
-      billNumber: '10010',
-      sponsor: 'sponsor',
-      relationship: '联合提出',
-      cosponsor: ['Eric', 'Luna'],
-    },
-    {
-      billNumber: '10010',
-      sponsor: 'sponsor',
-      relationship: '联合提出',
-      cosponsor: ['Eric', 'Luna'],
-    },
-    {
-      billNumber: '10010',
-      sponsor: 'sponsor',
-      relationship: '联合提出',
-      cosponsor: ['Eric', 'Luna'],
-    },
-    {
-      billNumber: '10010',
-      sponsor: 'sponsor',
-      relationship: '联合提出',
-      cosponsor: ['Eric', 'Luna'],
-    },
-  ];
+  const [relationship, setRelationship] = useState<IRelationship[]>([]);
+  const [relationshipFetch, setRelationshipFetch] = useState(false);
+  const [relativeBillNum, setRelativeBillNum] = useState(0);
 
   const SelectSearch = debounce(async (name: string) => {
     if (!name) return;
     setSelectFetch(true);
-    let res = await axios.get(APIS.CREATE_ENTERPRISE_REGISTRATION, {
+    let res = await axios.get(APIS.QUERY_PERSON_LIST, {
       params: {
         name,
         max: 5,
@@ -105,6 +88,20 @@ export default () => {
     setOptions(options);
     setSelectFetch(false);
   }, 800);
+
+  const searchRelationship = async () => {
+    setRelationshipFetch(true);
+    let { data } = await axios.get(APIS.QUERY_SPONSOR_AND_COSPONSOR, {
+      params: {
+        personUuid,
+        pageSize: 20,
+      },
+    });
+
+    setRelationship(data.tableData.data);
+    setRelativeBillNum(data.relativeBillNum);
+    setRelationshipFetch(false);
+  };
 
   return (
     <>
@@ -130,7 +127,7 @@ export default () => {
             filterOption={false}
             onSearch={SelectSearch}
             onChange={personUuid => {
-              setPersonUuid(personUuid.toString());
+              setPersonUuid(`${personUuid}`);
             }}>
             {options.map(d => (
               <Option key={d.value} value={d.value}>
@@ -138,31 +135,48 @@ export default () => {
               </Option>
             ))}
           </MySelect>
-          <Button type='primary'>查询</Button>
+          <Button type='primary' onClick={searchRelationship}>
+            查询
+          </Button>
         </Space>
       </MarginBottom>
       <MarginBottom>
         <Space size='large'>
-          <Statistic title='涉及到法案' value={11293} />
+          <Statistic title='涉及到法案' value={relativeBillNum} />
           <Statistic title='关系类型' value={1} />
         </Space>
       </MarginBottom>
-      <Table dataSource={data}>
-        <Column title='法案实例' dataIndex='billNumber' key='billNumber' />
-        <Column title='基本角色关系类型' dataIndex='sponsor' key='sponsor' />
+      <Table
+        dataSource={relationship}
+        rowKey={record => record.uuid}
+        loading={relationshipFetch}>
+        <Column title='法案实例' dataIndex='number' key='number' width={100} align='center' />
+        <Column
+          title='基本角色关系类型'
+          dataIndex='sponsor'
+          key='sponsor'
+          render={() => <span>sponsor</span>}
+          width={150}
+          align='center'
+        />
         <Column
           title='基本角色关系类型'
           dataIndex='relationship'
           key='relationship'
+          render={() => <span>联合提出</span>}
+          width={150}
+          align='center'
         />
         <Column
           title='基本角色实例'
           dataIndex='cosponsor'
           key='cosponsor'
-          render={(_text, record: ICosponsor) => (
+          render={(_text, record: IRelationship) => (
             <span>
-              {record.cosponsor.map(item => (
-                <Tag color='blue'>{item}</Tag>
+              {record.cosponsors.map((item: ICosponsor) => (
+                <Tag color='blue' key={item.cosponsor.uuid}>
+                  {item.cosponsor.name}
+                </Tag>
               ))}
             </span>
           )}
