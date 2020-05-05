@@ -9,7 +9,7 @@ import {
   Table,
   Statistic,
   Spin,
-  Empty
+  Empty,
 } from 'antd';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -56,6 +56,8 @@ const optionDataPack = (
 export default () => {
   const [options, setOptions] = useState<ISelectOption[]>([]);
   const [selectFetch, setSelectFetch] = useState(false);
+  const [personUuid, setPersonUuid] = useState('');
+
   let data: ICosponsor[] = [
     {
       billNumber: '10010',
@@ -95,7 +97,7 @@ export default () => {
     let res = await axios.get(APIS.CREATE_ENTERPRISE_REGISTRATION, {
       params: {
         name,
-        max: 5
+        max: 5,
       },
     });
 
@@ -127,7 +129,9 @@ export default () => {
             notFoundContent={selectFetch ? <Spin size='small' /> : <Empty />}
             filterOption={false}
             onSearch={SelectSearch}
-            onChange={() => {}}>
+            onChange={personUuid => {
+              setPersonUuid(personUuid.toString());
+            }}>
             {options.map(d => (
               <Option key={d.value} value={d.value}>
                 {d.text}
