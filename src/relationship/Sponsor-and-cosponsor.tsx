@@ -9,9 +9,11 @@ import {
   Table,
   Statistic,
   Spin,
+  Empty
 } from 'antd';
 import axios from 'axios';
 import styled from 'styled-components';
+import debounce from 'lodash.debounce';
 import * as APIS from '@src/constants/api-constants';
 
 const { Title } = Typography;
@@ -54,6 +56,7 @@ const optionDataPack = (
 
 export default () => {
   const [options, setOptions] = useState<ISelectOption[]>([]);
+  const [selectFetch, setSelectFetch] = useState(false);
   let data: ICosponsor[] = [
     {
       billNumber: '10010',
@@ -87,16 +90,19 @@ export default () => {
     },
   ];
 
-  const SelectSearch = async (name: string) => {
+  const SelectSearch = debounce(async (name: string) => {
+    if (!name) return;
+    setSelectFetch(true);
     let res = await axios.get(APIS.CREATE_ENTERPRISE_REGISTRATION, {
       params: {
         name,
       },
     });
-    console.log(res);
+
     let options = optionDataPack(res.data);
     setOptions(options);
-  };
+    setSelectFetch(false);
+  }, 800);
 
   return (
     <>
@@ -118,7 +124,7 @@ export default () => {
             showSearch
             showArrow={false}
             placeholder='Select users'
-            notFoundContent={<Spin size='small' />}
+            notFoundContent={selectFetch ? <Spin size='small' /> : <Empty />}
             filterOption={false}
             onSearch={SelectSearch}
             onChange={() => {}}>
