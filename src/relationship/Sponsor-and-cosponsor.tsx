@@ -44,8 +44,7 @@ interface ISelectOption {
 const optionDataPack = (
   data: { uuid: string; name: string }[]
 ): ISelectOption[] => {
-  let slicedData = data.slice(0, 5);
-  return slicedData.map(item => {
+  return data.map(item => {
     return {
       key: item.uuid,
       value: item.uuid,
@@ -96,6 +95,7 @@ export default () => {
     let res = await axios.get(APIS.CREATE_ENTERPRISE_REGISTRATION, {
       params: {
         name,
+        max: 5
       },
     });
 
