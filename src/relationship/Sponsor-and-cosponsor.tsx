@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Breadcrumb,
   Typography,
@@ -10,12 +10,13 @@ import {
   Statistic,
   Spin,
 } from 'antd';
-
+import axios from 'axios';
 import styled from 'styled-components';
+import * as APIS from '@src/constants/api-constants';
 
 const { Title } = Typography;
 const { Column } = Table;
-// const { Option } = Select;
+const { Option } = Select;
 
 const MarginBottom = styled.div`
   margin-bottom: 30px;
@@ -32,7 +33,27 @@ interface ICosponsor {
   cosponsor: string[];
 }
 
+interface ISelectOption {
+  key: string;
+  value: string;
+  text: string;
+}
+
+const optionDataPack = (
+  data: { uuid: string; name: string }[]
+): ISelectOption[] => {
+  let slicedData = data.slice(0, 5);
+  return slicedData.map(item => {
+    return {
+      key: item.uuid,
+      value: item.uuid,
+      text: item.name,
+    };
+  });
+};
+
 export default () => {
+  const [options, setOptions] = useState<ISelectOption[]>([]);
   let data: ICosponsor[] = [
     {
       billNumber: '10010',
@@ -66,10 +87,15 @@ export default () => {
     },
   ];
 
-  const SelectSearch = () => {
-    // let res = axios(url)
-    // let options = stringToOption(res.data);
-    // setOptions(options);
+  const SelectSearch = async (name: string) => {
+    let res = await axios.get(APIS.CREATE_ENTERPRISE_REGISTRATION, {
+      params: {
+        name,
+      },
+    });
+    console.log(res);
+    let options = optionDataPack(res.data);
+    setOptions(options);
   };
 
   return (
@@ -89,17 +115,19 @@ export default () => {
         <Space>
           <MySelect
             allowClear
-            labelInValue
+            showSearch
             showArrow={false}
             placeholder='Select users'
             notFoundContent={<Spin size='small' />}
             filterOption={false}
             onSearch={SelectSearch}
-            onChange={() => {}}
-            // {data.map(d => (
-            //   <Option key={d.value}>{d.text}</Option>
-            // ))}
-          ></MySelect>
+            onChange={() => {}}>
+            {options.map(d => (
+              <Option key={d.value} value={d.value}>
+                {d.text}
+              </Option>
+            ))}
+          </MySelect>
           <Button type='primary'>查询</Button>
         </Space>
       </MarginBottom>
