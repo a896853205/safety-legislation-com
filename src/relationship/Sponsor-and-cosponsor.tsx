@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Breadcrumb,
   Typography,
@@ -73,6 +73,9 @@ export default () => {
   const [relationship, setRelationship] = useState<IRelationship[]>([]);
   const [relationshipFetch, setRelationshipFetch] = useState(false);
   const [relativeBillNum, setRelativeBillNum] = useState(0);
+  const [totalNum, setTotalNum] = useState(0);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
 
   const SelectSearch = debounce(async (name: string) => {
     if (!name) return;
@@ -90,18 +93,25 @@ export default () => {
   }, 800);
 
   const searchRelationship = async () => {
-    setRelationshipFetch(true);
-    let { data } = await axios.get(APIS.QUERY_SPONSOR_AND_COSPONSOR, {
-      params: {
-        personUuid,
-        pageSize: 20,
-      },
-    });
+    if (personUuid) {
+      setRelationshipFetch(true);
+      let { data } = await axios.get(APIS.QUERY_SPONSOR_AND_COSPONSOR, {
+        params: {
+          personUuid,
+          pageSize,
+          page,
+        },
+      });
 
-    setRelationship(data.tableData.data);
-    setRelativeBillNum(data.relativeBillNum);
-    setRelationshipFetch(false);
+      setRelationship(data.data);
+      setTotalNum(data.totalNum);
+      setRelationshipFetch(false);
+    }
   };
+
+  useEffect(() => {
+    searchRelationship();
+  }, [page, searchRelationship]);
 
   return (
     <>
@@ -149,13 +159,26 @@ export default () => {
       <Table
         dataSource={relationship}
         rowKey={record => record.uuid}
-        loading={relationshipFetch}>
-        <Column title='法案实例' dataIndex='number' key='number' width={100} align='center' />
+        loading={relationshipFetch}
+        pagination={{
+          pageSize,
+          total: totalNum,
+          onChange: (page, pageSize) => {
+            if (pageSize) setPageSize(pageSize);
+            setPage(page);
+          }
+        }}>
         <Column
-          title='基本角色关系类型'
-          dataIndex='sponsor'
-          key='sponsor'
-          render={() => <span>sponsor</span>}
+          title='法案实例'
+          dataIndex='number'
+          key='number'
+          width={100}
+          align='center'
+        />
+        <Column
+          title='personType'
+          dataIndex='personType'
+          key='personType'
           width={150}
           align='center'
         />
