@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Breadcrumb,
   Typography,
   Select,
-  Button,
   Space,
   Tag,
   Table,
@@ -92,7 +91,7 @@ export default () => {
     setSelectFetch(false);
   }, 800);
 
-  const searchRelationship = async () => {
+  const searchRelationship = useCallback(async (personUuid, pageSize, page) => {
     if (personUuid) {
       setRelationshipFetch(true);
       let { data } = await axios.get(APIS.QUERY_SPONSOR_AND_COSPONSOR, {
@@ -107,11 +106,18 @@ export default () => {
       setTotalNum(data.totalNum);
       setRelationshipFetch(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    searchRelationship();
-  }, [page, searchRelationship]);
+    searchRelationship(personUuid, pageSize, page);
+  }, [searchRelationship, personUuid, pageSize, page]);
+
+  useEffect(() => {
+    if (personUuid) {
+      // axios 调用返回一些总结数据
+      setRelativeBillNum(10);
+    }
+  }, [personUuid]);
 
   return (
     <>
@@ -145,9 +151,6 @@ export default () => {
               </Option>
             ))}
           </MySelect>
-          <Button type='primary' onClick={searchRelationship}>
-            查询
-          </Button>
         </Space>
       </MarginBottom>
       <MarginBottom>
@@ -166,12 +169,19 @@ export default () => {
           onChange: (page, pageSize) => {
             if (pageSize) setPageSize(pageSize);
             setPage(page);
-          }
+          },
         }}>
         <Column
-          title='法案实例'
+          title='billNumber'
           dataIndex='number'
           key='number'
+          width={100}
+          align='center'
+        />
+        <Column
+          title='congress'
+          dataIndex='congress'
+          key='congress'
           width={100}
           align='center'
         />
@@ -183,7 +193,7 @@ export default () => {
           align='center'
         />
         <Column
-          title='基本角色关系类型'
+          title='relationshipType'
           dataIndex='relationship'
           key='relationship'
           render={() => <span>联合提出</span>}
@@ -191,7 +201,15 @@ export default () => {
           align='center'
         />
         <Column
-          title='基本角色实例'
+          title='sponsor'
+          dataIndex='sponsor'
+          key='sponsor'
+          align='center'
+          width={150}
+          render={sponsor => <Tag color='geekblue'>{sponsor.name}</Tag>}
+        />
+        <Column
+          title='cosponsors'
           dataIndex='cosponsor'
           key='cosponsor'
           render={(_text, record: IRelationship) => (
