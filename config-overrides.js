@@ -8,6 +8,8 @@ module.exports = override(
     style: 'css',
   }),
   addWebpackAlias({
-    '@src': path.resolve(__dirname, 'src'),
+    '@': path.resolve(__dirname, 'src'),
+    '@constants': path.resolve(__dirname, 'src/constants'),
+    '@components': path.resolve(__dirname, 'src/components'),
   })
 );

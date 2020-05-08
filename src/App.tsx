@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { Layout } from 'antd';
 import styled from 'styled-components';
-import Menu from '@src/Menu';
-import SponsorAndCosponsor from '@src/relationship/Sponsor-and-cosponsor';
+
+import Menu from '@/Menu';
+import SponsorAndCosponsor from '@/relationship/sponsor-and-cosponsor/Sponsor-and-cosponsor';
 
 const { Content, Footer, Sider } = Layout;
 
