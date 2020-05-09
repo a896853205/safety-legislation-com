@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { Menu } from 'antd';
 import styled from 'styled-components';
 
@@ -11,11 +13,18 @@ const MenuSpan = styled.span`
   margin-right: 20px;
 `;
 export default () => {
+  // const activeMenu = () => {
+  //   获取当前url来active对应menu
+  // }
   return (
-    <MyMenu theme='light' mode='inline' defaultSelectedKeys={['2']}>
+    <MyMenu theme='light' mode='inline'>
       <Menu.ItemGroup key='g1' title='关联关系预览'>
         <Menu.Item key='2'>
-          <MenuSpan>&lt;基本角色实例，基本角色关系类型，基本角色实例&gt;</MenuSpan>
+          <Link to='/sponsorAndCosponsor'>
+            <MenuSpan>
+              &lt;基本角色实例，基本角色关系类型，基本角色实例&gt;
+            </MenuSpan>
+          </Link>
         </Menu.Item>
         <Menu.Item key='3'>
           <MenuSpan>&lt;法案实例，法案关系类型，法案实例&gt;</MenuSpan>

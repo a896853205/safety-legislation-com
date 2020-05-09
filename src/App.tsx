@@ -1,10 +1,10 @@
 import React from 'react';
 
+import { renderRoutes, RouteConfigComponentProps } from 'react-router-config';
 import { Layout } from 'antd';
 import styled from 'styled-components';
 
 import Menu from '@/Menu';
-import SponsorAndCosponsor from '@/relationship/sponsor-and-cosponsor/Sponsor-and-cosponsor';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -29,7 +29,8 @@ const MyFooter = styled(Footer)`
   text-align: center;
 `;
 
-export default () => {
+export default (props: RouteConfigComponentProps) => {
+  const { route } = props;
   return (
     <Layout>
       <MySider theme='light' width={410}>
@@ -38,9 +39,7 @@ export default () => {
       </MySider>
 
       <ContentLayout>
-        <MyContent>
-          <SponsorAndCosponsor />
-        </MyContent>
+        <MyContent>{renderRoutes(route?.routes)}</MyContent>
         <MyFooter>code@Eric design@Luna</MyFooter>
       </ContentLayout>
     </Layout>
