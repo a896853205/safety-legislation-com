@@ -29,7 +29,7 @@ export default ({
       placeholder='Select users'
       notFoundContent={selectFetch ? <Spin size='small' /> : <Empty />}
       filterOption={false}
-      onSearch={() => selectSearch()}
+      onSearch={name => selectSearch(name)}
       onChange={personUuid => {
         onUuidChange(personUuid);
       }}>
