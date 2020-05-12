@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Breadcrumb, Typography, Space, Statistic } from 'antd';
+import React, { useState } from 'react';
+import { Breadcrumb, Typography } from 'antd';
 import styled from 'styled-components';
 
 import PersonSelectFetch from '@components/person-select-fetch/Person-select-fetch';
+import SCStatisticsFetch from './components/SC-statistics-fetch';
 import SCTableFetch from './components/SC-table-fetch';
 
 const { Title } = Typography;
@@ -13,14 +14,6 @@ const MarginBottom = styled.div`
 
 export default () => {
   const [personUuid, setPersonUuid] = useState('');
-  const [relativeBillNum, setRelativeBillNum] = useState(0);
-
-  useEffect(() => {
-    if (personUuid) {
-      // axios 调用返回一些总结数据
-      setRelativeBillNum(10);
-    }
-  }, [personUuid]);
 
   return (
     <>
@@ -43,10 +36,7 @@ export default () => {
         />
       </MarginBottom>
       <MarginBottom>
-        <Space size='large'>
-          <Statistic title='涉及到法案' value={relativeBillNum} />
-          <Statistic title='关系类型' value={1} />
-        </Space>
+        <SCStatisticsFetch personUuid={personUuid} />
       </MarginBottom>
       <SCTableFetch personUuid={personUuid} />
     </>
