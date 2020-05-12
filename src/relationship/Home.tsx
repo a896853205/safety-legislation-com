@@ -8,11 +8,16 @@ const HomeTitle = styled.div`
   text-align: center;
   height: 600px;
   line-height: 600px;
-`
+`;
+const BuleSpan = styled.span`
+  color: #40a9ff;
+`;
 export default () => {
-  return <>
-    <HomeTitle>
-      SAFETY LEGISLATION
-    </HomeTitle>
-  </>;
+  return (
+    <>
+      <HomeTitle>
+        S<BuleSpan>A</BuleSpan>FETY LEG<BuleSpan>I</BuleSpan>SLATION
+      </HomeTitle>
+    </>
+  );
 };
