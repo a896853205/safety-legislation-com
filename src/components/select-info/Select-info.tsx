@@ -14,19 +14,21 @@ interface IProp {
   selectFetch: boolean;
   selectSearch: Function;
   onUuidChange: Function;
+  placeholder: string;
 }
 export default ({
   options,
   selectFetch,
   selectSearch,
   onUuidChange,
+  placeholder,
 }: IProp) => {
   return (
     <MySelect
       allowClear
       showSearch
       showArrow={false}
-      placeholder='Select users'
+      placeholder={placeholder}
       notFoundContent={selectFetch ? <Spin size='small' /> : <Empty />}
       filterOption={false}
       onSearch={name => selectSearch(name)}

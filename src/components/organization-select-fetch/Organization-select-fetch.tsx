@@ -34,7 +34,7 @@ export default ({ onUuidChange }: IProp) => {
   const selectSearch = debounce(async (name: string) => {
     if (!name) return;
     setSelectFetch(true);
-    let res = await axios.get(APIS.QUERY_PERSON_LIST, {
+    let res = await axios.get(APIS.QUERY_ORGANIZATION_LIST, {
       params: {
         name,
         max: 5,
@@ -52,7 +52,7 @@ export default ({ onUuidChange }: IProp) => {
       selectFetch={selectFetch}
       selectSearch={selectSearch}
       onUuidChange={onUuidChange}
-      placeholder='select user'
+      placeholder='select organization'
     />
   );
 };
