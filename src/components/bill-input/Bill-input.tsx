@@ -55,6 +55,7 @@ export default ({ onBillNumberChange, onCongressChange }: IProp) => {
         placeholder='number'
         onChange={e => setbillNumber(e.target.value)}
       />
+      {/* TODO: input防抖处理 */}
       <BillInput
         placeholder='congress'
         suffix='th'

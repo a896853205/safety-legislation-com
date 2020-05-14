@@ -18,12 +18,12 @@ export default ({
   relatedObjectNum,
 }: IProp) => {
   return (
-    <Space>
-      <Statistic title='涉及到法案' value={relativeBillNum} />
-      <Statistic title='管理者' value={committeeNum} />
-      <Statistic title='执行者' value={executorNum} />
-      <Statistic title='约束对象' value={constraintNum} />
-      <Statistic title='相关对象' value={relatedObjectNum} />
+    <Space size='large'>
+      <Statistic title='涉及到总法案数' value={relativeBillNum} />
+      <Statistic title='作为管理者法案总数' value={committeeNum} />
+      <Statistic title='作为执行者总数' value={executorNum} />
+      <Statistic title='作为约束对象总数' value={constraintNum} />
+      <Statistic title='作为相关对象总数' value={relatedObjectNum} />
     </Space>
   );
 };

@@ -14,7 +14,6 @@ interface IProp {
 interface IRelationship {
   uuid: string;
   number: string;
-  name: string;
 }
 
 export default ({
