@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { SwapRightOutlined, SwapLeftOutlined } from '@ant-design/icons';
 
 import BillInput from '@/components/bill-input/Bill-input';
+import OBStatisticsFetch from './components/OB-statistics-fetch';
 import OBTableCommitteeFetch from './components/OB-table-committee-fetch';
 import OBTableConstraintFetch from './components/OB-table-constraint-fetch';
 import OBTableExecutorFetch from './components/OB-table-executor-fetch';
@@ -52,7 +53,9 @@ export default () => {
               }}
             />
           </MarginBottom>
-          <MarginBottom>{/* TODO: 统计信息各类的总数,和bill数 */}</MarginBottom>
+          <MarginBottom>
+            <OBStatisticsFetch organizationUuid={organizationUuid} />
+          </MarginBottom>
           <Tabs defaultActiveKey='1' tabPosition='left'>
             <TabPane tab='管理者' key='1'>
               <OBTableCommitteeFetch organizationUuid={organizationUuid} />
