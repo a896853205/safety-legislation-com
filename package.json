@@ -16,6 +16,7 @@
     "@types/styled-components": "^5.1.0",
     "antd": "^4.2.0",
     "axios": "^0.19.2",
+    "cross-env": "^7.0.2",
     "lodash.debounce": "^4.0.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -27,7 +28,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "cross-env NODE_ENV=production react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
