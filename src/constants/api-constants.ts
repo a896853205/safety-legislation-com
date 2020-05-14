@@ -12,3 +12,4 @@ export const QUERY_OB_RELATED_OBJECT = `${DominConfigs.DOMAIN}${DominConfigs.PAR
 export const QUERY_OB_EXECUTOR = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/OBExecutor`;
 export const QUERY_OB_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/OBStatistics`;
 export const QUERY_BILL_AND_ORGANIZATION = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/billAndOrganization`;
+export const QUERY_BO_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/BOStatistics`

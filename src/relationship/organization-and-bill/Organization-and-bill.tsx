@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { SwapRightOutlined, SwapLeftOutlined } from '@ant-design/icons';
 
 import BillInput from '@/components/bill-input/Bill-input';
+import BOStatisticsFetch from './components/BO-statistics-fetch';
 import BOTableFetch from './components/BO-table-fetch';
 import OBStatisticsFetch from './components/OB-statistics-fetch';
 import OBTableCommitteeFetch from './components/OB-table-committee-fetch';
@@ -90,9 +91,12 @@ export default () => {
               }}
             />
           </MarginBottom>
-          <MarginBottom>{/* TODO: 统计bill数 */}</MarginBottom>
-          {/* TODO: 表格(自己的类型 + 法案) */}
-          {billNumber} {billCongress}
+          <MarginBottom>
+            <BOStatisticsFetch
+              billNumber={billNumber}
+              billCongress={billCongress}
+            />
+          </MarginBottom>
           <BOTableFetch billNumber={billNumber} billCongress={billCongress} />
         </TabPane>
       </Tabs>
