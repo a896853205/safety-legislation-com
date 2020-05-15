@@ -5,7 +5,7 @@ import { SAP_CONTROL } from '../config/app-config';
 const _DOMAIN = {
   [ENVIRONMENT.DEV]: 'http://localhost:4000',
   [ENVIRONMENT.TEST]: 'http://localhost:4000',
-  [ENVIRONMENT.PRO]: 'http://47.94.133.12:4400',
+  [ENVIRONMENT.PRO]: 'http://39.97.175.30:4000',
 };
 
 export const DOMAIN = _DOMAIN[SAP_CONTROL];
