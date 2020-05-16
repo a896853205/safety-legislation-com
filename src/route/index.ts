@@ -1,9 +1,10 @@
 import { RouteConfig } from 'react-router-config';
 
 import App from '@/App';
+import BillAndPolicyArea from '@/relationship/bill-and-policy-area/BillAndPolicyArea';
+import Home from '@/relationship/Home';
 import OrganizationAndBill from '@/relationship/organization-and-bill/Organization-and-bill';
 import SponsorAndCosponsor from '@/relationship/sponsor-and-cosponsor/Sponsor-and-cosponsor';
-import Home from '@/relationship/Home';
 
 const config: RouteConfig[] = [
   {
@@ -22,6 +23,10 @@ const config: RouteConfig[] = [
       {
         path: '/organizationAndBill',
         component: OrganizationAndBill,
+      },
+      {
+        path: '/billAndPolicyArea',
+        component: BillAndPolicyArea,
       },
     ],
   },

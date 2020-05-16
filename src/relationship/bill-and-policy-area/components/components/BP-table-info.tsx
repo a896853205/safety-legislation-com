@@ -14,6 +14,7 @@ interface IProp {
 interface IRelationship {
   uuid: string;
   number: string;
+  policyArea: string;
 }
 
 export default ({
@@ -47,6 +48,12 @@ export default ({
         title='congress'
         dataIndex='congress'
         key='congress'
+        align='center'
+      />
+      <Column
+        title='policyArea'
+        dataIndex='policyArea'
+        key='policyArea'
         align='center'
       />
     </Table>

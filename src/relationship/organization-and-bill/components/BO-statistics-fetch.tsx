@@ -20,7 +20,6 @@ export default ({ billNumber, billCongress }: IProp) => {
     if (billNumber && billCongress) {
       let {
         data: {
-          relativeBillNum,
           committeeNum,
           constraintNum,
           executorNum,
