@@ -43,7 +43,9 @@ export default () => {
           <MenuSpan>&lt;法案实例，法案类型&gt;</MenuSpan>
         </Menu.Item>
         <Menu.Item key='6'>
-          <MenuSpan>&lt;法案实例，立法主题&gt;</MenuSpan>
+          <Link to='/billAndLegislativeSubjects'>
+            <MenuSpan>&lt;法案实例，立法主题&gt;</MenuSpan>
+          </Link>
         </Menu.Item>
         <Menu.Item key='7'>
           <MenuSpan>&lt;法案实例，初始状态，中间状态集，结束状态&gt;</MenuSpan>

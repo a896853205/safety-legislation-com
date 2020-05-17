@@ -3,6 +3,7 @@ import * as DominConfigs from './domin-constants';
 export const QUERY_PERSON_LIST = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_SYS}/personList`;
 export const QUERY_ORGANIZATION_LIST = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_SYS}/organizationList`;
 export const QUERY_POLICY_AREA_LIST = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_SYS}/policyAreaList`;
+export const QUERY_LEGISLATIVE_SUBJECTS_LIST = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_SYS}/legislativeSubjectsList`;
 
 export const QUERY_SPONSOR_AND_COSPONSOR = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/sponsorAndCosponsor`;
 export const QUERY_SC_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/SCStatistics`;
@@ -18,3 +19,8 @@ export const QUERY_BO_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OP
 export const QUERY_BILL_AND_POLICY_AREA = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/billAndPolicyArea`;
 export const QUERY_PB_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/PBStatistics`;
 export const QUERY_POLICY_AREA_AND_BILL = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/policyAreaAndBill`;
+
+export const QUERY_BL_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/BLStatistics`;
+export const QUERY_LB_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/LBStatistics`;
+export const QUERY_BILL_AND_LEGISLATIVE_SUBJECTS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/billAndLegislativeSubjects`;
+export const QUERY_LEGISLATIVE_SUBJECTS_AND_BILL = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/legislativeSubjectsAndBill`;

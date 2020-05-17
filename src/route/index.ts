@@ -1,6 +1,7 @@
 import { RouteConfig } from 'react-router-config';
 
 import App from '@/App';
+import BillAndLegislativeSubjects from '@/relationship/bill-and-legislative-subjects/Bill-and-legislative-subjects';
 import BillAndPolicyArea from '@/relationship/bill-and-policy-area/BillAndPolicyArea';
 import Home from '@/relationship/Home';
 import OrganizationAndBill from '@/relationship/organization-and-bill/Organization-and-bill';
@@ -27,6 +28,10 @@ const config: RouteConfig[] = [
       {
         path: '/billAndPolicyArea',
         component: BillAndPolicyArea,
+      },
+      {
+        path: '/billAndLegislativeSubjects',
+        component: BillAndLegislativeSubjects,
       },
     ],
   },
