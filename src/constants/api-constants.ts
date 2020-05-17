@@ -24,3 +24,5 @@ export const QUERY_BL_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OP
 export const QUERY_LB_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/LBStatistics`;
 export const QUERY_BILL_AND_LEGISLATIVE_SUBJECTS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/billAndLegislativeSubjects`;
 export const QUERY_LEGISLATIVE_SUBJECTS_AND_BILL = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/legislativeSubjectsAndBill`;
+
+export const QUERY_BILL_AND_COUNTRY = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/billAndCountry`;
