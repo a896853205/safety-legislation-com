@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import { Breadcrumb, Typography, Tabs } from 'antd';
 import styled from 'styled-components';
@@ -18,10 +18,14 @@ const MarginBottom = styled.div`
 `;
 
 export default () => {
-  const [countryType, setcountryType] = useState('');
-  const [countryUuid, setCountryUuid] = useState('');
+  const [countryType, setcountryType] = useState<string | undefined>(undefined);
+  const [countryUuid, setCountryUuid] = useState<string | undefined>(undefined);
   const [billNumber, setBillNumber] = useState('');
   const [billCongress, setBillCongress] = useState(0);
+
+  useEffect(() => {
+    setCountryUuid(undefined);
+  }, [countryType]);
 
   return (
     <>
@@ -65,6 +69,8 @@ export default () => {
           key='2'>
           <MarginBottom>
             <CountrySelectFetch
+              countryUuid={countryUuid}
+              countryType={countryType}
               onCountryUuidChange={(countryUuid: string) => {
                 setCountryUuid(countryUuid);
               }}

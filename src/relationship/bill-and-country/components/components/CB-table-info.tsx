@@ -11,17 +11,9 @@ interface IProp {
   pageSize: number;
   onPageSizeChange: Function;
 }
-interface ICountry {
-  uuid: string;
-  name: string;
-  fullName: string;
-  territory: string;
-  territoryDetail: string;
-}
 interface IRelationship {
   uuid: string;
   number: string;
-  country: ICountry;
 }
 
 export default ({
@@ -56,30 +48,6 @@ export default ({
         dataIndex='congress'
         key='congress'
         align='center'
-      />
-      <Column
-        title='countryName'
-        dataIndex='country'
-        align='center'
-        render={(item: ICountry) => <span>{item.name}</span>}
-      />
-      <Column
-        title='countryFullName'
-        dataIndex='country'
-        align='center'
-        render={(item: ICountry) => <span>{item.fullName}</span>}
-      />
-      <Column
-        title='countryTerritory'
-        dataIndex='country'
-        align='center'
-        render={(item: ICountry) => <span>{item.territory}</span>}
-      />
-      <Column
-        title='countryTerritoryDetail'
-        dataIndex='country'
-        align='center'
-        render={(item: ICountry) => <span>{item.territoryDetail}</span>}
       />
     </Table>
   );

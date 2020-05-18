@@ -57,7 +57,9 @@ export default () => {
           <MenuSpan>&lt;法案实例状态，状态时间&gt;</MenuSpan>
         </Menu.Item>
         <Menu.Item key='10'>
-          <MenuSpan>&lt;法案实例，覆盖地理区域&gt;</MenuSpan>
+          <Link to='/billAndCountry'>
+            <MenuSpan>&lt;法案实例，覆盖地理区域&gt;</MenuSpan>
+          </Link>
         </Menu.Item>
         <Menu.Item key='11'>
           <MenuSpan>&lt;法案实例，覆盖政治组织&gt;</MenuSpan>

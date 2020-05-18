@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Select, Spin, Empty } from 'antd';
 import styled from 'styled-components';
@@ -15,6 +15,7 @@ interface IProp {
   selectSearch: Function;
   onUuidChange: Function;
   placeholder: string;
+  value?: string;
 }
 export default ({
   options,
@@ -22,9 +23,17 @@ export default ({
   selectSearch,
   onUuidChange,
   placeholder,
+  value,
 }: IProp) => {
+  const [_value, setValue] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    setValue(value);
+  }, [value]);
+
   return (
     <MySelect
+      value={_value}
       allowClear
       showSearch
       showArrow={false}
@@ -34,6 +43,7 @@ export default ({
       onSearch={name => selectSearch(name)}
       onChange={personUuid => {
         onUuidChange(personUuid);
+        setValue(`${personUuid}`);
       }}>
       {options.map(d => (
         <Option key={d.value} value={d.value}>
