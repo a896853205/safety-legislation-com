@@ -5,6 +5,7 @@ export const QUERY_ORGANIZATION_LIST = `${DominConfigs.DOMAIN}${DominConfigs.PAR
 export const QUERY_POLICY_AREA_LIST = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_SYS}/policyAreaList`;
 export const QUERY_LEGISLATIVE_SUBJECTS_LIST = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_SYS}/legislativeSubjectsList`;
 export const QUERY_COUNTRY_LIST = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_SYS}/countryList`;
+export const QUERY_POLICY_ORGANIZATION_LIST = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_SYS}/policyOrganizationList`;
 
 export const QUERY_SPONSOR_AND_COSPONSOR = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/sponsorAndCosponsor`;
 export const QUERY_SC_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/SCStatistics`;
@@ -28,3 +29,9 @@ export const QUERY_LEGISLATIVE_SUBJECTS_AND_BILL = `${DominConfigs.DOMAIN}${Domi
 
 export const QUERY_BILL_AND_COUNTRY = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/billAndCountry`;
 export const QUERY_CB_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/CBStatistics`;
+export const QUERY_COUNTRY_AND_BILL = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/countryAndBill`;
+
+export const QUERY_BPO_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/BPOStatistics`;
+export const QUERY_BILL_AND_LEGISLATIVE_ORGANIZATION = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/billAndLegislativeOrganization`;
+export const QUERY_POB_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/POBStatistics`;
+export const QUERY_POLICY_ORGANIZATION_AND_BILL = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/policyOrganizationAndBill`;

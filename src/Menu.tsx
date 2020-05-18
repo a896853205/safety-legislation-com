@@ -62,7 +62,9 @@ export default () => {
           </Link>
         </Menu.Item>
         <Menu.Item key='11'>
-          <MenuSpan>&lt;法案实例，覆盖政治组织&gt;</MenuSpan>
+          <Link to='/billAndPolicyOrganization'>
+            <MenuSpan>&lt;法案实例，覆盖政治组织&gt;</MenuSpan>
+          </Link>
         </Menu.Item>
       </Menu.ItemGroup>
     </MyMenu>

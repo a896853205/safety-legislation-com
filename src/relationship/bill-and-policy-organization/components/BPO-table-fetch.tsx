@@ -3,27 +3,24 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
 
-import CBTableInfo from './components/CB-table-info';
+import BPOTableInfo from './components/BPO-table-info';
 import * as APIS from '@constants/api-constants';
 
-interface ICountry {
+interface IPolicyOrganization {
   uuid: string;
   name: string;
-  fullName: string;
-  territory: string;
-  territoryDetail: string;
 }
 interface IRelationship {
   uuid: string;
   number: string;
-  country: ICountry;
+  policyOrganization: IPolicyOrganization[];
 }
 interface IProp {
-  countryUuid?: string;
-  countryType?: string;
+  billNumber: string;
+  billCongress: number;
 }
 
-export default ({ countryUuid, countryType }: IProp) => {
+export default ({ billNumber, billCongress }: IProp) => {
   const [relationship, setRelationship] = useState<IRelationship[]>([]);
   const [page, setPage] = useState(1);
   const [totalNum, setTotalNum] = useState(0);
@@ -33,21 +30,24 @@ export default ({ countryUuid, countryType }: IProp) => {
   const searchRelationship = useCallback(
     debounce(
       async (
+        billNumber: string,
+        billCongress: number,
         pageSize: number,
-        page: number,
-        countryUuid?: string,
-        countryType?: string
+        page: number
       ) => {
-        if (countryUuid && countryType) {
+        if (billNumber && billCongress) {
           setRelationshipFetch(true);
-          let { data } = await axios.get(APIS.QUERY_COUNTRY_AND_BILL, {
-            params: {
-              countryUuid,
-              countryType,
-              pageSize,
-              page,
-            },
-          });
+          let { data } = await axios.get(
+            APIS.QUERY_BILL_AND_LEGISLATIVE_ORGANIZATION,
+            {
+              params: {
+                billNumber,
+                billCongress,
+                pageSize,
+                page,
+              },
+            }
+          );
 
           setRelationship(data.data);
           setTotalNum(data.totalNum);
@@ -60,11 +60,11 @@ export default ({ countryUuid, countryType }: IProp) => {
   );
 
   useEffect(() => {
-    searchRelationship(pageSize, page, countryUuid, countryType);
-  }, [searchRelationship, countryUuid, countryType, pageSize, page]);
+    searchRelationship(billNumber, billCongress, pageSize, page);
+  }, [searchRelationship, billNumber, billCongress, pageSize, page]);
 
   return (
-    <CBTableInfo
+    <BPOTableInfo
       relationship={relationship}
       relationshipFetch={relationshipFetch}
       totalNum={totalNum}
