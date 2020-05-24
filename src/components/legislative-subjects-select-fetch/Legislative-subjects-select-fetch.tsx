@@ -19,12 +19,12 @@ export default ({ onLegislativeSubjectsChange }: IProp) => {
   const [options, setOptions] = useState<ISelectOption[]>([]);
   const [selectFetch, setSelectFetch] = useState(false);
 
-  const optionDataPack = (data: string[]): ISelectOption[] => {
+  const optionDataPack = (data: { subject: string }[]): ISelectOption[] => {
     return data.map(item => {
       return {
-        key: item,
-        value: item,
-        text: item,
+        key: item.subject,
+        value: item.subject,
+        text: item.subject,
       };
     });
   };

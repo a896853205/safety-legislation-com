@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 import { Space } from 'antd';
@@ -38,15 +38,58 @@ export default ({
   const [selectFetch, setSelectFetch] = useState(false);
 
   const optionDataPack = (
-    data: { uuid: string; name: string }[]
+    data: {
+      uuid: string;
+      name?: string;
+      fullName?: string;
+      territory?: string;
+      territoryDetail?: string;
+    }[],
+    countryType: string | undefined
   ): ISelectOption[] => {
-    return data.map(item => {
-      return {
-        key: item.uuid,
-        value: item.uuid,
-        text: item.name,
-      };
-    });
+    let res: ISelectOption[] = [];
+    if (countryType === 'countryName') {
+      data.forEach(item => {
+        if (item?.name) {
+          res.push({
+            key: item.uuid,
+            value: item.uuid,
+            text: item.name,
+          });
+        }
+      });
+    } else if (countryType === 'countryFullName') {
+      data.forEach(item => {
+        if (item?.fullName) {
+          res.push({
+            key: item.uuid,
+            value: item.uuid,
+            text: item.fullName,
+          });
+        }
+      });
+    } else if (countryType === 'territory') {
+      data.forEach(item => {
+        if (item?.territory) {
+          res.push({
+            key: item.uuid,
+            value: item.uuid,
+            text: item.territory,
+          });
+        }
+      });
+    } else if (countryType === 'territoryDetail') {
+      data.forEach(item => {
+        if (item?.territoryDetail) {
+          res.push({
+            key: item.uuid,
+            value: item.uuid,
+            text: item.territoryDetail,
+          });
+        }
+      });
+    }
+    return res;
   };
 
   const selectSearch = debounce(async (value: string) => {
@@ -55,15 +98,19 @@ export default ({
     let res = await axios.get(APIS.QUERY_COUNTRY_LIST, {
       params: {
         countryType,
-        value,
+        name: value,
         max: 5,
       },
     });
 
-    let options = optionDataPack(res.data);
+    let options = optionDataPack(res.data, countryType);
     setOptions(options);
     setSelectFetch(false);
   }, 800);
+
+  useEffect(() => {
+    setOptions([]);
+  }, [countryType]);
 
   return (
     <Space>

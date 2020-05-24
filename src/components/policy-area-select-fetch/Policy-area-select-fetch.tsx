@@ -19,12 +19,12 @@ export default ({ onPolicyAreaChange }: IProp) => {
   const [options, setOptions] = useState<ISelectOption[]>([]);
   const [selectFetch, setSelectFetch] = useState(false);
 
-  const optionDataPack = (data: string[]): ISelectOption[] => {
+  const optionDataPack = (data: { policyArea: string }[]): ISelectOption[] => {
     return data.map(item => {
       return {
-        key: item,
-        value: item,
-        text: item,
+        key: item.policyArea,
+        value: item.policyArea,
+        text: item.policyArea,
       };
     });
   };
