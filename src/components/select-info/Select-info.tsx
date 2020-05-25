@@ -34,7 +34,6 @@ export default ({
   return (
     <MySelect
       value={_value}
-      allowClear
       showSearch
       showArrow={false}
       placeholder={placeholder}

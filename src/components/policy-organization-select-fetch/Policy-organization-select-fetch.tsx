@@ -19,12 +19,14 @@ export default ({ onPolicyOrganizationChange }: IProp) => {
   const [options, setOptions] = useState<ISelectOption[]>([]);
   const [selectFetch, setSelectFetch] = useState(false);
 
-  const optionDataPack = (data: string[]): ISelectOption[] => {
+  const optionDataPack = (
+    data: { uuid: string; name: string }[]
+  ): ISelectOption[] => {
     return data.map(item => {
       return {
-        key: item,
-        value: item,
-        text: item,
+        key: item.uuid,
+        value: item.uuid,
+        text: item.name,
       };
     });
   };
