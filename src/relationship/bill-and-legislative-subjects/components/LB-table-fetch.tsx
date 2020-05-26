@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 
 import axios from 'axios';
 import debounce from 'lodash.debounce';
@@ -20,12 +20,13 @@ interface IProp {
   legislativeSubjects: string;
 }
 
-export default ({ legislativeSubjects }: IProp) => {
+export default memo(({ legislativeSubjects }: IProp) => {
   const [relationship, setRelationship] = useState<IRelationship[]>([]);
   const [page, setPage] = useState(1);
   const [totalNum, setTotalNum] = useState(0);
   const [pageSize, setPageSize] = useState(20);
   const [relationshipFetch, setRelationshipFetch] = useState(false);
+  const [needFetch, setNeedFetch] = useState(false);
 
   const searchRelationship = useCallback(
     debounce(
@@ -46,6 +47,7 @@ export default ({ legislativeSubjects }: IProp) => {
           setRelationship(data.data);
           setTotalNum(data.totalNum);
           setRelationshipFetch(false);
+          setNeedFetch(false);
         }
       },
       800
@@ -53,12 +55,24 @@ export default ({ legislativeSubjects }: IProp) => {
     []
   );
 
+  // 重置页数
   useEffect(() => {
-    searchRelationship(legislativeSubjects, pageSize, page);
-  }, [searchRelationship, legislativeSubjects, pageSize, page]);
+    setPage(1);
+  }, [legislativeSubjects]);
+
+  useEffect(() => {
+    setNeedFetch(true);
+  }, [legislativeSubjects, pageSize, page]);
+
+  useEffect(() => {
+    if (needFetch) {
+      searchRelationship(legislativeSubjects, pageSize, page);
+    }
+  }, [searchRelationship, legislativeSubjects, pageSize, page, needFetch]);
 
   return (
     <BLTableInfo
+      page={page}
       relationship={relationship}
       relationshipFetch={relationshipFetch}
       totalNum={totalNum}
@@ -67,4 +81,4 @@ export default ({ legislativeSubjects }: IProp) => {
       onPageSizeChange={(pageSize: number) => setPageSize(pageSize)}
     />
   );
-};
+});

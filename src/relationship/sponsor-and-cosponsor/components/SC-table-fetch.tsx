@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 
 import axios from 'axios';
 
@@ -16,12 +16,13 @@ interface IRelationship {
   cosponsors: ICosponsor[];
 }
 
-export default ({ personUuid }: { personUuid: string }) => {
+export default memo(({ personUuid }: { personUuid: string }) => {
   const [relationship, setRelationship] = useState<IRelationship[]>([]);
   const [page, setPage] = useState(1);
   const [totalNum, setTotalNum] = useState(0);
   const [pageSize, setPageSize] = useState(20);
   const [relationshipFetch, setRelationshipFetch] = useState(false);
+  const [needFetch, setNeedFetch] = useState(false);
 
   const searchRelationship = useCallback(async (personUuid, pageSize, page) => {
     if (personUuid) {
@@ -37,15 +38,28 @@ export default ({ personUuid }: { personUuid: string }) => {
       setRelationship(data.data);
       setTotalNum(data.totalNum);
       setRelationshipFetch(false);
+      setNeedFetch(false);
     }
   }, []);
 
+  // 重置页数
   useEffect(() => {
-    searchRelationship(personUuid, pageSize, page);
-  }, [searchRelationship, personUuid, pageSize, page]);
+    setPage(1);
+  }, [personUuid]);
+
+  useEffect(() => {
+    setNeedFetch(true);
+  }, [personUuid, pageSize, page]);
+
+  useEffect(() => {
+    if (needFetch) {
+      searchRelationship(personUuid, pageSize, page);
+    }
+  }, [searchRelationship, personUuid, pageSize, page, needFetch]);
 
   return (
     <SCTableInfo
+      page={page}
       relationship={relationship}
       relationshipFetch={relationshipFetch}
       totalNum={totalNum}
@@ -54,4 +68,4 @@ export default ({ personUuid }: { personUuid: string }) => {
       onPageSizeChange={(pageSize: number) => setPageSize(pageSize)}
     />
   );
-};
+});

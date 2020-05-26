@@ -10,6 +10,7 @@ interface IProp {
   onPageChange: Function;
   pageSize: number;
   onPageSizeChange: Function;
+  page: number;
 }
 interface IRelationship {
   uuid: string;
@@ -17,6 +18,7 @@ interface IRelationship {
 }
 
 export default ({
+  page,
   relationship,
   relationshipFetch,
   totalNum,
@@ -30,6 +32,7 @@ export default ({
       rowKey={record => record.uuid}
       loading={relationshipFetch}
       pagination={{
+        current: page,
         pageSize,
         total: totalNum,
         onChange: (page, pageSize) => {

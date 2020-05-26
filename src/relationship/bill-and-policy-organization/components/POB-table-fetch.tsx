@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 
 import axios from 'axios';
 import debounce from 'lodash.debounce';
@@ -20,12 +20,13 @@ interface IProp {
   policyOrganizationUuid: string;
 }
 
-export default ({ policyOrganizationUuid }: IProp) => {
+export default memo(({ policyOrganizationUuid }: IProp) => {
   const [relationship, setRelationship] = useState<IRelationship[]>([]);
   const [page, setPage] = useState(1);
   const [totalNum, setTotalNum] = useState(0);
   const [pageSize, setPageSize] = useState(20);
   const [relationshipFetch, setRelationshipFetch] = useState(false);
+  const [needFetch, setNeedFetch] = useState(false);
 
   const searchRelationship = useCallback(
     debounce(
@@ -50,6 +51,7 @@ export default ({ policyOrganizationUuid }: IProp) => {
           setRelationship(data.data);
           setTotalNum(data.totalNum);
           setRelationshipFetch(false);
+          setNeedFetch(false);
         }
       },
       800
@@ -57,12 +59,24 @@ export default ({ policyOrganizationUuid }: IProp) => {
     []
   );
 
+  // 重置页数
   useEffect(() => {
-    searchRelationship(policyOrganizationUuid, pageSize, page);
-  }, [searchRelationship, policyOrganizationUuid, pageSize, page]);
+    setPage(1);
+  }, [policyOrganizationUuid]);
+
+  useEffect(() => {
+    setNeedFetch(true);
+  }, [policyOrganizationUuid, pageSize, page]);
+
+  useEffect(() => {
+    if (needFetch) {
+      searchRelationship(policyOrganizationUuid, pageSize, page);
+    }
+  }, [searchRelationship, policyOrganizationUuid, pageSize, page, needFetch]);
 
   return (
     <BPOTableInfo
+      page={page}
       relationship={relationship}
       relationshipFetch={relationshipFetch}
       totalNum={totalNum}
@@ -71,4 +85,4 @@ export default ({ policyOrganizationUuid }: IProp) => {
       onPageSizeChange={(pageSize: number) => setPageSize(pageSize)}
     />
   );
-};
+});

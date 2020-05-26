@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 
 import axios from 'axios';
 import debounce from 'lodash.debounce';
@@ -23,12 +23,13 @@ interface IProp {
   countryType?: string;
 }
 
-export default ({ countryUuid, countryType }: IProp) => {
+export default memo(({ countryUuid, countryType }: IProp) => {
   const [relationship, setRelationship] = useState<IRelationship[]>([]);
   const [page, setPage] = useState(1);
   const [totalNum, setTotalNum] = useState(0);
   const [pageSize, setPageSize] = useState(20);
   const [relationshipFetch, setRelationshipFetch] = useState(false);
+  const [needFetch, setNeedFetch] = useState(false);
 
   const searchRelationship = useCallback(
     debounce(
@@ -52,6 +53,7 @@ export default ({ countryUuid, countryType }: IProp) => {
           setRelationship(data.data);
           setTotalNum(data.totalNum);
           setRelationshipFetch(false);
+          setNeedFetch(false);
         }
       },
       800
@@ -59,12 +61,24 @@ export default ({ countryUuid, countryType }: IProp) => {
     []
   );
 
+  // 重置页数
   useEffect(() => {
-    searchRelationship(pageSize, page, countryUuid, countryType);
-  }, [searchRelationship, countryUuid, countryType, pageSize, page]);
+    setPage(1);
+  }, [countryUuid, countryType]);
+
+  useEffect(() => {
+    setNeedFetch(true);
+  }, [countryUuid, countryType, pageSize, page]);
+
+  useEffect(() => {
+    if (needFetch) {
+      searchRelationship(pageSize, page, countryUuid, countryType);
+    }
+  }, [searchRelationship, countryUuid, countryType, pageSize, page, needFetch]);
 
   return (
     <CBTableInfo
+      page={page}
       relationship={relationship}
       relationshipFetch={relationshipFetch}
       totalNum={totalNum}
@@ -73,4 +87,4 @@ export default ({ countryUuid, countryType }: IProp) => {
       onPageSizeChange={(pageSize: number) => setPageSize(pageSize)}
     />
   );
-};
+});

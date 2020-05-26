@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 
 import axios from 'axios';
 
@@ -10,12 +10,13 @@ interface IRelationship {
   number: string;
 }
 
-export default ({ policyArea }: { policyArea: string }) => {
+export default memo(({ policyArea }: { policyArea: string }) => {
   const [relationship, setRelationship] = useState<IRelationship[]>([]);
   const [page, setPage] = useState(1);
   const [totalNum, setTotalNum] = useState(0);
   const [pageSize, setPageSize] = useState(20);
   const [relationshipFetch, setRelationshipFetch] = useState(false);
+  const [needFetch, setNeedFetch] = useState(false);
 
   const searchRelationship = useCallback(async (policyArea, pageSize, page) => {
     if (policyArea) {
@@ -31,15 +32,28 @@ export default ({ policyArea }: { policyArea: string }) => {
       setRelationship(data.data);
       setTotalNum(data.totalNum);
       setRelationshipFetch(false);
+      setNeedFetch(false);
     }
   }, []);
 
+  // 重置页数
   useEffect(() => {
-    searchRelationship(policyArea, pageSize, page);
-  }, [searchRelationship, policyArea, pageSize, page]);
+    setPage(1);
+  }, [policyArea]);
+
+  useEffect(() => {
+    setNeedFetch(true);
+  }, [policyArea, pageSize, page]);
+
+  useEffect(() => {
+    if (needFetch) {
+      searchRelationship(policyArea, pageSize, page);
+    }
+  }, [searchRelationship, policyArea, pageSize, page, needFetch]);
 
   return (
     <PBTableBillInfo
+      page={page}
       relationship={relationship}
       relationshipFetch={relationshipFetch}
       totalNum={totalNum}
@@ -48,4 +62,4 @@ export default ({ policyArea }: { policyArea: string }) => {
       onPageSizeChange={(pageSize: number) => setPageSize(pageSize)}
     />
   );
-};
+});
