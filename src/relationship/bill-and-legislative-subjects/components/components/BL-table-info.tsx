@@ -14,7 +14,7 @@ interface IProp {
 }
 interface ILegislativeSubject {
   uuid: string;
-  name: string;
+  subject: string;
 }
 interface IRelationship {
   uuid: string;
@@ -63,7 +63,7 @@ export default ({
         key='legislativeSubjects'
         render={legislativeSubjects =>
           legislativeSubjects.map((legislativeSubject: ILegislativeSubject) => (
-            <Tag key={legislativeSubject.uuid}>{legislativeSubject.name}</Tag>
+            <Tag key={legislativeSubject.uuid}>{legislativeSubject.subject}</Tag>
           ))
         }
       />

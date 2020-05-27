@@ -8,7 +8,7 @@ import * as APIS from '@constants/api-constants';
 
 interface ILegislativeSubject {
   uuid: string;
-  name: string;
+  subject: string;
 }
 interface IRelationship {
   uuid: string;

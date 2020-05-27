@@ -15,10 +15,10 @@ export default ({ legislativeSubjects }: IProp) => {
     if (legislativeSubjects) {
       let { data } = await axios.get(APIS.QUERY_LB_STATISTICS, {
         params: {
-          legislativeSubjects,
+          subject: legislativeSubjects,
         },
       });
-      setRelativeBillNum(data.relativeBillNum);
+      setRelativeBillNum(data.relativeBillTotal);
     }
   }, []);
 

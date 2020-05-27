@@ -20,7 +20,7 @@ export default ({ billNumber, billCongress }: IProp) => {
           billCongress,
         },
       });
-      setlegislativeSubjectsNum(data.legislativeSubjectsNum);
+      setlegislativeSubjectsNum(data.totalNum);
     }
   }, []);
 
@@ -28,5 +28,5 @@ export default ({ billNumber, billCongress }: IProp) => {
     queryBLStatistics(billNumber, billCongress);
   }, [billNumber, billCongress, queryBLStatistics]);
 
-  return <BLStatisticsInfo legislativeSubjectsNum={legislativeSubjectsNum} />;
+  return <BLStatisticsInfo totalNum={legislativeSubjectsNum} />;
 };
