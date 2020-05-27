@@ -80,12 +80,9 @@ export default () => {
             />
           </MarginBottom>
           <MarginBottom>
-            <CBStatisticsFetch
-              countryUuid={countryUuid}
-              countryType={countryType}
-            />
+            <CBStatisticsFetch countryUuid={countryUuid} />
           </MarginBottom>
-          <CBTableFetch countryUuid={countryUuid} countryType={countryType} />
+          <CBTableFetch countryUuid={countryUuid} />
         </TabPane>
       </Tabs>
     </>

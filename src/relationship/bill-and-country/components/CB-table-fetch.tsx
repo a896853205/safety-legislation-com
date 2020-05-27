@@ -20,10 +20,9 @@ interface IRelationship {
 }
 interface IProp {
   countryUuid?: string;
-  countryType?: string;
 }
 
-export default memo(({ countryUuid, countryType }: IProp) => {
+export default memo(({ countryUuid }: IProp) => {
   const [relationship, setRelationship] = useState<IRelationship[]>([]);
   const [page, setPage] = useState(1);
   const [totalNum, setTotalNum] = useState(0);
@@ -32,49 +31,40 @@ export default memo(({ countryUuid, countryType }: IProp) => {
   const [needFetch, setNeedFetch] = useState(false);
 
   const searchRelationship = useCallback(
-    debounce(
-      async (
-        pageSize: number,
-        page: number,
-        countryUuid?: string,
-        countryType?: string
-      ) => {
-        if (countryUuid && countryType) {
-          setRelationshipFetch(true);
-          let { data } = await axios.get(APIS.QUERY_COUNTRY_AND_BILL, {
-            params: {
-              countryUuid,
-              countryType,
-              pageSize,
-              page,
-            },
-          });
+    debounce(async (pageSize: number, page: number, countryUuid?: string) => {
+      if (countryUuid) {
+        setRelationshipFetch(true);
+        let { data } = await axios.get(APIS.QUERY_COUNTRY_AND_BILL, {
+          params: {
+            countryUuid,
+            pageSize,
+            page,
+          },
+        });
 
-          setRelationship(data.data);
-          setTotalNum(data.totalNum);
-          setRelationshipFetch(false);
-          setNeedFetch(false);
-        }
-      },
-      800
-    ),
+        setRelationship(data.data);
+        setTotalNum(data.totalNum);
+        setRelationshipFetch(false);
+        setNeedFetch(false);
+      }
+    }, 800),
     []
   );
 
   // 重置页数
   useEffect(() => {
     setPage(1);
-  }, [countryUuid, countryType]);
+  }, [countryUuid]);
 
   useEffect(() => {
     setNeedFetch(true);
-  }, [countryUuid, countryType, pageSize, page]);
+  }, [countryUuid, pageSize, page]);
 
   useEffect(() => {
     if (needFetch) {
-      searchRelationship(pageSize, page, countryUuid, countryType);
+      searchRelationship(pageSize, page, countryUuid);
     }
-  }, [searchRelationship, countryUuid, countryType, pageSize, page, needFetch]);
+  }, [searchRelationship, countryUuid, pageSize, page, needFetch]);
 
   return (
     <CBTableInfo

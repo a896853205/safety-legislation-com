@@ -93,8 +93,10 @@ export default ({
   };
 
   const selectSearch = debounce(async (value: string) => {
-    if (!value) return;
+    if (!value || !countryType) return;
+
     setSelectFetch(true);
+
     let res = await axios.get(APIS.QUERY_COUNTRY_LIST, {
       params: {
         countryType,

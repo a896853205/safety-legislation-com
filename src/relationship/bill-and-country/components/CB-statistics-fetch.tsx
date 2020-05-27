@@ -6,27 +6,25 @@ import CBStatisticsInfo from './components/CB-statistics-info';
 
 interface IProp {
   countryUuid?: string;
-  countryType?: string;
 }
 
-export default ({ countryUuid, countryType }: IProp) => {
+export default ({ countryUuid }: IProp) => {
   const [relativeBillNum, setRelativeBillNum] = useState(0);
 
-  const queryCBStatistics = useCallback(async (countryUuid, countryType) => {
-    if (countryUuid && countryType) {
+  const queryCBStatistics = useCallback(async countryUuid => {
+    if (countryUuid) {
       let { data } = await axios.get(APIS.QUERY_CB_STATISTICS, {
         params: {
           countryUuid,
-          countryType,
         },
       });
-      setRelativeBillNum(data.relativeBillNum);
+      setRelativeBillNum(data.relativeBillTotal);
     }
   }, []);
 
   useEffect(() => {
-    queryCBStatistics(countryUuid, countryType);
-  }, [countryUuid, countryType, queryCBStatistics]);
+    queryCBStatistics(countryUuid);
+  }, [countryUuid, queryCBStatistics]);
 
   return <CBStatisticsInfo relativeBillNum={relativeBillNum} />;
 };
