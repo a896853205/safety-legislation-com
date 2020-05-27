@@ -11,10 +11,15 @@ interface IPolicyOrganization {
   uuid: string;
   name: string;
 }
+interface ICountry {
+  uuid: string;
+  politicalOrganizations: IPolicyOrganization[];
+}
 interface IRelationship {
   uuid: string;
   number: string;
-  policyOrganization: IPolicyOrganization[];
+  congress: number;
+  country: ICountry;
 }
 interface IProp {
   policyOrganizationUuid: string;

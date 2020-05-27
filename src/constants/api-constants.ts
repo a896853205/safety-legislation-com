@@ -32,6 +32,7 @@ export const QUERY_BILL_AND_COUNTRY = `${DominConfigs.DOMAIN}${DominConfigs.PART
 export const QUERY_CB_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/CBStatistics`;
 export const QUERY_COUNTRY_AND_BILL = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/countryAndBill`;
 
+// <法案实例，覆盖政治组织>
 export const QUERY_BPO_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/BPOStatistics`;
 export const QUERY_BILL_AND_LEGISLATIVE_ORGANIZATION = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/billAndLegislativeOrganization`;
 export const QUERY_POB_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/POBStatistics`;

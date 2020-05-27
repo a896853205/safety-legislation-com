@@ -16,10 +16,15 @@ interface IPolicyOrganization {
   uuid: string;
   name: string;
 }
+interface ICountry {
+  uuid: string;
+  politicalOrganizations: IPolicyOrganization[];
+}
 interface IRelationship {
   uuid: string;
   number: string;
-  policyOrganization: IPolicyOrganization[];
+  congress: number;
+  country: ICountry;
 }
 
 export default ({
@@ -59,12 +64,16 @@ export default ({
       />
       <Column
         title='policyOrganization'
-        dataIndex='policyOrganization'
-        key='policyOrganization'
-        render={legislativeSubjects =>
-          legislativeSubjects.map((legislativeSubject: IPolicyOrganization) => (
-            <Tag key={legislativeSubject.uuid}>{legislativeSubject.name}</Tag>
-          ))
+        dataIndex='country'
+        key='country'
+        render={country =>
+          country.politicalOrganizations.map(
+            (politicalOrganizations: IPolicyOrganization) => (
+              <Tag key={politicalOrganizations.uuid}>
+                {politicalOrganizations.name}
+              </Tag>
+            )
+          )
         }
       />
     </Table>

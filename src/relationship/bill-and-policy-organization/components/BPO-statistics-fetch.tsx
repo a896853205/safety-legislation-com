@@ -20,7 +20,7 @@ export default ({ billNumber, billCongress }: IProp) => {
           billCongress,
         },
       });
-      setPolicyOrganizationNum(data.policyOrganizationNum);
+      setPolicyOrganizationNum(data.totalNum);
     }
   }, []);
 
