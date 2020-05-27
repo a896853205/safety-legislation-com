@@ -27,6 +27,7 @@ export const QUERY_LB_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OP
 export const QUERY_BILL_AND_LEGISLATIVE_SUBJECTS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/billAndLegislativeSubjects`;
 export const QUERY_LEGISLATIVE_SUBJECTS_AND_BILL = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/legislativeSubjectsAndBill`;
 
+// <法案实例，覆盖地理区域>
 export const QUERY_BILL_AND_COUNTRY = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/billAndCountry`;
 export const QUERY_CB_STATISTICS = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/CBStatistics`;
 export const QUERY_COUNTRY_AND_BILL = `${DominConfigs.DOMAIN}${DominConfigs.PART.OPT_RELATIONSHIP}/countryAndBill`;
