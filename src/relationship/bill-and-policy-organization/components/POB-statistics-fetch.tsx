@@ -18,7 +18,7 @@ export default ({ policyOrganizationUuid }: IProp) => {
           policyOrganizationUuid,
         },
       });
-      setRelativeBillNum(data.relativeBillNum);
+      setRelativeBillNum(data.relativeBillTotal);
     }
   }, []);
 
