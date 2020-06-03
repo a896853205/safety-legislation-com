@@ -7,6 +7,10 @@ const { Title } = Typography;
 const MarginBottom = styled.div`
   margin-bottom: 30px;
 `;
+const DesH5 = styled.h5`
+  font-weight: 600;
+  font-size: 18px;
+`;
 
 export default () => {
   return (
@@ -45,21 +49,26 @@ export default () => {
             通过对法案文本内容进行分析，对其所涵盖的主题进行分类通过对法案实例涵盖的主题进行分类，并将其定义为立法主题。每篇法案对应多项立法主题。统计与网络信息安全相关的立法主题类型共计864项。
           </Descriptions.Item>
           <Descriptions.Item label='法案关系类型' span={3}>
-            国家内部各项法案实例间的关系
-            <br />
-            Amend：修正关系，法案实例与其修正案之间的相互关系定义为Amend。
-            <br />
-            Substitution：替代关系，被议会通过可以代替另一篇法案的立法文本间的关系定义为Substitution。
-            <br />
-            Identical：相同关系，两篇文本内容完全相同或文本相似度极高的法案实体间的关系定义为Identical。
-            <br />
-            Similar：同类关系，两篇政策领域相同、立法主题、关键词高度相似的法案实例间的关系定义为Similar。
-            <br />
-            由于在Identical与Similar的界定上可能会存在冲突的问题，因此在产生此问题的情况下，本课题优先将法案实例间的关系定义为Identical。
-            <br />
-            国家之间各项法案实例间的关系
-            <br />
-            Related：相关关系，两篇源于不同国家的政策领域相同、立法主题、关键词高度相似并且文本内容高度相似的法案实例间的关系定义为Related，意为引入同一个法案。
+            <DesH5>国家内部各项法案实例间的关系</DesH5>
+            <p>
+              Amend：修正关系，法案实例与其修正案之间的相互关系定义为Amend。
+            </p>
+            <p>
+              Substitution：替代关系，被议会通过可以代替另一篇法案的立法文本间的关系定义为Substitution。
+            </p>
+            <p>
+              Identical：相同关系，两篇文本内容完全相同或文本相似度极高的法案实体间的关系定义为Identical。
+            </p>
+            <p>
+              Similar：同类关系，两篇政策领域相同、立法主题、关键词高度相似的法案实例间的关系定义为Similar。
+            </p>
+            <p>
+              由于在Identical与Similar的界定上可能会存在冲突的问题，因此在产生此问题的情况下，本课题优先将法案实例间的关系定义为Identical。
+            </p>
+            <DesH5>国家之间各项法案实例间的关系</DesH5>
+            <p>
+              Related：相关关系，两篇源于不同国家的政策领域相同、立法主题、关键词高度相似并且文本内容高度相似的法案实例间的关系定义为Related，意为引入同一个法案。
+            </p>
           </Descriptions.Item>
           <Descriptions.Item label='法案状态' span={3}>
             将法案实例的立法进程分为多个步骤，将立法进程中第一个步骤定义为法案实例的初始状态，将初始状态对应的时间定义为提出时间；将立法进程中最后一个步骤定义为结束状态；其余步骤定义为中间状态。
