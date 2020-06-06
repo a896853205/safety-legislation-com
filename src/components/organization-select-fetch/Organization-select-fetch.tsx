@@ -52,7 +52,7 @@ export default ({ onUuidChange }: IProp) => {
       selectFetch={selectFetch}
       selectSearch={selectSearch}
       onUuidChange={onUuidChange}
-      placeholder='请输入组织名称'
+      placeholder='请输入其他基本角色名称'
       tooltipValue='如: House Foreign Affairs'
     />
   );

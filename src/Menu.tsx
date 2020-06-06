@@ -18,13 +18,6 @@ export default () => {
   // }
   return (
     <MyMenu theme='light' mode='inline'>
-      <Menu.ItemGroup key='g0' title='词汇表'>
-        <Menu.Item key='0'>
-          <Link to='/dictionary'>
-            <MenuSpan>词汇表</MenuSpan>
-          </Link>
-        </Menu.Item>
-      </Menu.ItemGroup>
       <Menu.ItemGroup key='g1' title='关联关系预览'>
         <Menu.Item key='2'>
           <Link to='/organizationAndBill'>
@@ -64,6 +57,13 @@ export default () => {
         <Menu.Item key='11'>
           <Link to='/billAndPolicyOrganization'>
             <MenuSpan>&lt;法案实例，覆盖政治组织&gt;</MenuSpan>
+          </Link>
+        </Menu.Item>
+      </Menu.ItemGroup>
+      <Menu.ItemGroup key='g2' title='词汇表'>
+        <Menu.Item key='0'>
+          <Link to='/dictionary'>
+            <MenuSpan>词汇表</MenuSpan>
           </Link>
         </Menu.Item>
       </Menu.ItemGroup>
