@@ -1,14 +1,14 @@
 import { RouteConfig } from 'react-router-config';
 
 import App from '@/App';
-import BillAndCountry from '@/relationship/bill-and-country/Bill-and-country';
-import BillAndLegislativeSubjects from '@/relationship/bill-and-legislative-subjects/Bill-and-legislative-subjects';
-import BillAndPolicyArea from '@/relationship/bill-and-policy-area/Bill-and-policy-area';
-import BillAndPolicyOrganization from '@/relationship/bill-and-policy-organization/Bill-and-policy-organization';
-import Dictionary from '@/dictionary/Dictionary';
+import BillAndCountry from '@/relationship/bill-and-country';
+import BillAndLegislativeSubjects from '@/relationship/bill-and-legislative-subjects';
+import BillAndPolicyArea from '@/relationship/bill-and-policy-area';
+import BillAndPolicyOrganization from '@/relationship/bill-and-policy-organization';
+import Dictionary from '@/dictionary';
 import Home from '@/relationship/Home';
-import OrganizationAndBill from '@/relationship/organization-and-bill/Organization-and-bill';
-import SponsorAndCosponsor from '@/relationship/sponsor-and-cosponsor/Sponsor-and-cosponsor';
+import OrganizationAndBill from '@/relationship/organization-and-bill';
+import SponsorAndCosponsor from '@/relationship/sponsor-and-cosponsor';
 
 const config: RouteConfig[] = [
   {
