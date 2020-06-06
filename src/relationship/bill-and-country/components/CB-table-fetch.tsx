@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
 
+import { message } from 'antd';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
 
@@ -46,6 +47,7 @@ export default memo(({ countryUuid }: IProp) => {
         setTotalNum(data.totalNum);
         setRelationshipFetch(false);
         setNeedFetch(false);
+        message.success(`数据查询成功,共${data.totalNum}条`);
       }
     }, 800),
     []

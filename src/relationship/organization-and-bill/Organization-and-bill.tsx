@@ -67,7 +67,7 @@ export default () => {
         <TabPane
           tab={
             <span>
-              组织 <DoubleRightOutlined />
+              其他基本角色 <DoubleRightOutlined />
               法案实例
             </span>
           }
