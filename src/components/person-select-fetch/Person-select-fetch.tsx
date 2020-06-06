@@ -52,7 +52,8 @@ export default ({ onUuidChange }: IProp) => {
       selectFetch={selectFetch}
       selectSearch={selectSearch}
       onUuidChange={onUuidChange}
-      placeholder='select user'
+      placeholder='请输入提出者姓名'
+      tooltipValue='如 "Joe Wilson"'
     />
   );
 };

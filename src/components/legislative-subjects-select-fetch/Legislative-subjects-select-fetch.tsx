@@ -50,7 +50,8 @@ export default ({ onLegislativeSubjectsChange }: IProp) => {
       selectFetch={selectFetch}
       selectSearch={selectSearch}
       onUuidChange={onLegislativeSubjectsChange}
-      placeholder='select legislative subjects'
+      placeholder='请输入立法主题'
+      tooltipValue='如: Computer security and identity theft'
     />
   );
 };

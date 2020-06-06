@@ -52,7 +52,8 @@ export default ({ onUuidChange }: IProp) => {
       selectFetch={selectFetch}
       selectSearch={selectSearch}
       onUuidChange={onUuidChange}
-      placeholder='select organization'
+      placeholder='请输入组织名称'
+      tooltipValue='如: House Foreign Affairs'
     />
   );
 };

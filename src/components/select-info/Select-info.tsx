@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Select, Spin, Empty } from 'antd';
+import { Select, Spin, Empty, Tooltip } from 'antd';
 import styled from 'styled-components';
 
 const { Option } = Select;
@@ -16,6 +16,7 @@ interface IProp {
   onUuidChange: Function;
   placeholder: string;
   value?: string;
+  tooltipValue?: string;
 }
 export default ({
   options,
@@ -24,6 +25,7 @@ export default ({
   onUuidChange,
   placeholder,
   value,
+  tooltipValue,
 }: IProp) => {
   const [_value, setValue] = useState<string | undefined>(undefined);
 
@@ -32,23 +34,27 @@ export default ({
   }, [value]);
 
   return (
-    <MySelect
-      value={_value}
-      showSearch
-      showArrow={false}
-      placeholder={placeholder}
-      notFoundContent={selectFetch ? <Spin size='small' /> : <Empty />}
-      filterOption={false}
-      onSearch={name => selectSearch(name)}
-      onChange={personUuid => {
-        onUuidChange(personUuid);
-        setValue(`${personUuid}`);
-      }}>
-      {options.map(d => (
-        <Option key={d.value} value={d.value}>
-          {d.text}
-        </Option>
-      ))}
-    </MySelect>
+    <Tooltip trigger={['hover']} title={tooltipValue} placement='topLeft'>
+      <div>
+        <MySelect
+          value={_value}
+          showSearch
+          showArrow={false}
+          placeholder={placeholder}
+          notFoundContent={selectFetch ? <Spin size='small' /> : <Empty />}
+          filterOption={false}
+          onSearch={name => selectSearch(name)}
+          onChange={personUuid => {
+            onUuidChange(personUuid);
+            setValue(`${personUuid}`);
+          }}>
+          {options.map(d => (
+            <Option key={d.value} value={d.value}>
+              {d.text}
+            </Option>
+          ))}
+        </MySelect>
+      </div>
+    </Tooltip>
   );
 };

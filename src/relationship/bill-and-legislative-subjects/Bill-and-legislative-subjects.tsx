@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 
 import { Breadcrumb, Typography, Tabs } from 'antd';
 import styled from 'styled-components';
-import { SwapRightOutlined, SwapLeftOutlined } from '@ant-design/icons';
+import { DoubleRightOutlined } from '@ant-design/icons';
 
 import BillInput from '@/components/bill-input/Bill-input';
 import BLTableFetch from './components/BL-table-fetch';
@@ -38,7 +38,7 @@ export default () => {
         <TabPane
           tab={
             <span>
-              法案实例 <SwapRightOutlined />
+              法案实例 <DoubleRightOutlined />
               立法主题
             </span>
           }
@@ -64,8 +64,8 @@ export default () => {
         <TabPane
           tab={
             <span>
-              法案实例 <SwapLeftOutlined />
-              立法主题
+              立法主题 <DoubleRightOutlined />
+              法案实例
             </span>
           }
           key='2'>

@@ -50,7 +50,8 @@ export default ({ onPolicyAreaChange }: IProp) => {
       selectFetch={selectFetch}
       selectSearch={selectSearch}
       onUuidChange={onPolicyAreaChange}
-      placeholder='select policy area'
+      placeholder='请输入要查询的政策领域'
+      tooltipValue='如: International Affairs'
     />
   );
 };

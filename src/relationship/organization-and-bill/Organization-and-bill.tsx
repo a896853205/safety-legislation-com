@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 
 import { Breadcrumb, Typography, Tabs } from 'antd';
 import styled from 'styled-components';
-import { SwapRightOutlined, SwapLeftOutlined } from '@ant-design/icons';
+import { DoubleRightOutlined } from '@ant-design/icons';
 
 import BillInput from '@/components/bill-input/Bill-input';
 import BOStatisticsFetch from './components/BO-statistics-fetch';
@@ -47,7 +47,27 @@ export default () => {
         <TabPane
           tab={
             <span>
-              基本角色实例 <SwapRightOutlined />
+              提出者 <DoubleRightOutlined />
+              法案实例
+            </span>
+          }
+          key='3'>
+          <MarginBottom>
+            <PersonSelectFetch
+              onUuidChange={(personUuid: string) => {
+                setPersonUuid(personUuid);
+              }}
+            />
+          </MarginBottom>
+          <MarginBottom>
+            <SCStatisticsFetch personUuid={personUuid} />
+          </MarginBottom>
+          <SCTableFetch personUuid={personUuid} />
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              组织 <DoubleRightOutlined />
               法案实例
             </span>
           }
@@ -80,8 +100,8 @@ export default () => {
         <TabPane
           tab={
             <span>
-              基本角色实例 <SwapLeftOutlined />
-              法案实例
+              法案实例 <DoubleRightOutlined />
+              基本角色实例
             </span>
           }
           key='2'>
@@ -102,26 +122,6 @@ export default () => {
             />
           </MarginBottom>
           <BOTableFetch billNumber={billNumber} billCongress={billCongress} />
-        </TabPane>
-        <TabPane
-          tab={
-            <span>
-              人 <SwapRightOutlined />
-              法案实例
-            </span>
-          }
-          key='3'>
-          <MarginBottom>
-            <PersonSelectFetch
-              onUuidChange={(personUuid: string) => {
-                setPersonUuid(personUuid);
-              }}
-            />
-          </MarginBottom>
-          <MarginBottom>
-            <SCStatisticsFetch personUuid={personUuid} />
-          </MarginBottom>
-          <SCTableFetch personUuid={personUuid} />
         </TabPane>
       </Tabs>
     </>

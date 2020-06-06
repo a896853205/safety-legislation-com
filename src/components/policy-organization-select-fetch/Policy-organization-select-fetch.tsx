@@ -52,7 +52,8 @@ export default ({ onPolicyOrganizationChange }: IProp) => {
       selectFetch={selectFetch}
       selectSearch={selectSearch}
       onUuidChange={onPolicyOrganizationChange}
-      placeholder='select policy organization'
+      placeholder='请输入政策组织'
+      tooltipValue='如: 八国集团'
     />
   );
 };

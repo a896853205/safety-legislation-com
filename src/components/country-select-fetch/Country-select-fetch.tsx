@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
-import { Space } from 'antd';
+import { Space, Tooltip } from 'antd';
 import debounce from 'lodash.debounce';
 
 import * as APIS from '@constants/api-constants';
@@ -9,10 +9,10 @@ import CountrySelectInfo from './components/Country-select-info';
 import SelectInfo from '../select-info/Select-info';
 
 const countryBeforeArr = [
-  'countryName',
-  'countryFullName',
-  'territory',
-  'territoryDetail',
+  { value: 'countryName', name: '国家' },
+  { value: 'countryFullName', name: '国家全称' },
+  { value: 'territory', name: '地理区域' },
+  { value: 'territoryDetail', name: '地域细分' },
 ];
 
 interface IProp {
@@ -120,14 +120,21 @@ export default ({
         countryBeforeArr={countryBeforeArr}
         onCountryTypeChange={onCountryTypeChange}
       />
-      <SelectInfo
-        placeholder='input search value'
-        onUuidChange={onCountryUuidChange}
-        options={options}
-        selectFetch={selectFetch}
-        selectSearch={selectSearch}
-        value={countryUuid}
-      />
+      <Tooltip
+        trigger={['hover']}
+        title={'例如: 美国'}
+        placement='topLeft'>
+        <div>
+          <SelectInfo
+            placeholder='请输入要查询的信息'
+            onUuidChange={onCountryUuidChange}
+            options={options}
+            selectFetch={selectFetch}
+            selectSearch={selectSearch}
+            value={countryUuid}
+          />
+        </div>
+      </Tooltip>
     </Space>
   );
 };

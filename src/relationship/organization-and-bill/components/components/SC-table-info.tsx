@@ -47,28 +47,28 @@ export default ({
         },
       }}>
       <Column
-        title='billNumber'
+        title='法案号'
         dataIndex='number'
         key='number'
         width={100}
         align='center'
       />
       <Column
-        title='congress'
+        title='国会届数'
         dataIndex='congress'
         key='congress'
         width={100}
         align='center'
       />
       <Column
-        title='personType'
+        title='基本角色类型'
         dataIndex='personType'
         key='personType'
         width={150}
         align='center'
       />
       <Column
-        title='relationshipType'
+        title='基本角色关系类型'
         dataIndex='relationship'
         key='relationship'
         render={() => <span>联合提出</span>}
@@ -76,7 +76,7 @@ export default ({
         align='center'
       />
       <Column
-        title='sponsor'
+        title='提出者'
         dataIndex='sponsor'
         key='sponsor'
         align='center'
@@ -84,7 +84,7 @@ export default ({
         render={sponsor => <Tag color='geekblue'>{sponsor.name}</Tag>}
       />
       <Column
-        title='cosponsors'
+        title='联合提出者'
         dataIndex='cosponsor'
         key='cosponsor'
         render={(_text, record: IRelationship) => (

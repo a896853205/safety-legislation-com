@@ -73,7 +73,7 @@ export default ({
         },
       }}>
       <Column
-        title='billNumber'
+        title='法案号'
         dataIndex='number'
         key='number'
         width={120}
@@ -81,7 +81,7 @@ export default ({
         fixed='left'
       />
       <Column
-        title='congress'
+        title='国会届数'
         dataIndex='congress'
         key='congress'
         width={100}
@@ -89,7 +89,7 @@ export default ({
         fixed='left'
       />
       <Column
-        title='sponsor'
+        title='提出者'
         dataIndex='sponsor'
         key='sponsor'
         align='center'
@@ -97,7 +97,7 @@ export default ({
         render={sponsor => <Tag color='geekblue'>{sponsor.name}</Tag>}
       />
       <Column
-        title='cosponsors'
+        title='联合提出者'
         dataIndex='cosponsor'
         key='cosponsor'
         width={300}
@@ -112,7 +112,7 @@ export default ({
         )}
       />
       <Column
-        title='committees'
+        title='管理者'
         dataIndex='committees'
         key='committees'
         width={300}
@@ -125,7 +125,7 @@ export default ({
         }
       />
       <Column
-        title='constraint'
+        title='约束对象'
         dataIndex='constraint'
         key='constraint'
         width={300}
@@ -138,7 +138,7 @@ export default ({
         }
       />
       <Column
-        title='executor'
+        title='执行者'
         dataIndex='executor'
         key='executor'
         width={300}
@@ -151,7 +151,7 @@ export default ({
         }
       />
       <Column
-        title='relatedObject'
+        title='相关对象'
         dataIndex='relatedObject'
         key='relatedObject'
         width={300}

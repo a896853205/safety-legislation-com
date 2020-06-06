@@ -51,19 +51,19 @@ export default ({
         },
       }}>
       <Column
-        title='billNumber'
+        title='法案号'
         dataIndex='number'
         key='number'
         align='center'
       />
       <Column
-        title='congress'
+        title='国会届数'
         dataIndex='congress'
         key='congress'
         align='center'
       />
       <Column
-        title='policyOrganization'
+        title='覆盖政治组织'
         dataIndex='country'
         key='country'
         render={country =>

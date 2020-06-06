@@ -49,37 +49,37 @@ export default ({
         },
       }}>
       <Column
-        title='billNumber'
+        title='法案号'
         dataIndex='number'
         key='number'
         align='center'
       />
       <Column
-        title='congress'
+        title='国会届数'
         dataIndex='congress'
         key='congress'
         align='center'
       />
       <Column
-        title='countryName'
+        title='国家'
         dataIndex='country'
         align='center'
         render={(item: ICountry) => <span>{item.name}</span>}
       />
       <Column
-        title='countryFullName'
+        title='国家全称'
         dataIndex='country'
         align='center'
         render={(item: ICountry) => <span>{item.fullName}</span>}
       />
       <Column
-        title='countryTerritory'
+        title='地理区域'
         dataIndex='country'
         align='center'
         render={(item: ICountry) => <span>{item.territory}</span>}
       />
       <Column
-        title='countryTerritoryDetail'
+        title='地域细分'
         dataIndex='country'
         align='center'
         render={(item: ICountry) => <span>{item.territoryDetail}</span>}

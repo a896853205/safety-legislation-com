@@ -10,20 +10,20 @@ const MySelect = styled(Select)`
 `;
 
 interface IProp {
-  countryBeforeArr: string[];
+  countryBeforeArr: { value: string; name: string }[];
   onCountryTypeChange: Function;
 }
 export default ({ countryBeforeArr, onCountryTypeChange }: IProp) => {
   return (
     <MySelect
-      placeholder='select country input type'
+      placeholder='请选择输入类型'
       onSelect={countryBefore => {
         onCountryTypeChange(countryBefore);
       }}>
       {countryBeforeArr.map(countryBefore => {
         return (
-          <Option key={countryBefore} value={countryBefore}>
-            {countryBefore}
+          <Option key={countryBefore.value} value={countryBefore.value}>
+            {countryBefore.name}
           </Option>
         );
       })}
