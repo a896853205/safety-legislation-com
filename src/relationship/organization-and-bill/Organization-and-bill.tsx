@@ -13,6 +13,9 @@ import OBTableConstraintFetch from './components/OB-table-constraint-fetch';
 import OBTableExecutorFetch from './components/OB-table-executor-fetch';
 import OBTableRelatedObjectFetch from './components/OB-table-related-object-fetch';
 import OrganizationSelectFetch from '@/components/organization-select-fetch/Organization-select-fetch';
+import PersonSelectFetch from '@components/person-select-fetch/Person-select-fetch';
+import SCStatisticsFetch from './components/SC-statistics-fetch';
+import SCTableFetch from './components/SC-table-fetch';
 
 const { Title } = Typography;
 const { TabPane } = Tabs;
@@ -22,6 +25,7 @@ const MarginBottom = styled.div`
 `;
 
 export default () => {
+  const [personUuid, setPersonUuid] = useState('');
   const [organizationUuid, setOrganizationUuid] = useState('');
   const [billNumber, setBillNumber] = useState('');
   const [billCongress, setBillCongress] = useState(0);
@@ -98,6 +102,26 @@ export default () => {
             />
           </MarginBottom>
           <BOTableFetch billNumber={billNumber} billCongress={billCongress} />
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              人 <SwapRightOutlined />
+              法案实例
+            </span>
+          }
+          key='3'>
+          <MarginBottom>
+            <PersonSelectFetch
+              onUuidChange={(personUuid: string) => {
+                setPersonUuid(personUuid);
+              }}
+            />
+          </MarginBottom>
+          <MarginBottom>
+            <SCStatisticsFetch personUuid={personUuid} />
+          </MarginBottom>
+          <SCTableFetch personUuid={personUuid} />
         </TabPane>
       </Tabs>
     </>

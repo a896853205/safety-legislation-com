@@ -6,6 +6,10 @@ import debounce from 'lodash.debounce';
 import BOTableInfo from './components/BO-table-info';
 import * as APIS from '@constants/api-constants';
 
+interface ICosponsor {
+  uuid: string;
+  cosponsor: { uuid: string; name: string };
+}
 interface IOrganization {
   uuid: string;
   name: string;
@@ -30,6 +34,8 @@ interface IRelatedObject {
 interface IRelationship {
   uuid: string;
   number: string;
+  sponsor: { uuid: string; name: string };
+  cosponsors: ICosponsor[];
   committees: ICommittee[];
   constraint: IConstraint[];
   executor: IExecutor[];

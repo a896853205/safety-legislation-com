@@ -3,6 +3,10 @@ import { Table, Tag } from 'antd';
 
 const { Column } = Table;
 
+interface ICosponsor {
+  uuid: string;
+  cosponsor: { uuid: string; name: string };
+}
 interface IProp {
   relationship: IRelationship[];
   totalNum: number;
@@ -36,6 +40,8 @@ interface IRelatedObject {
 interface IRelationship {
   uuid: string;
   number: string;
+  sponsor: { uuid: string; name: string };
+  cosponsors: ICosponsor[];
   committees: ICommittee[];
   constraint: IConstraint[];
   executor: IExecutor[];
@@ -56,6 +62,7 @@ export default ({
       dataSource={relationship}
       rowKey={record => record.uuid}
       loading={relationshipFetch}
+      scroll={{ x: 1800 }}
       pagination={{
         current: page,
         pageSize,
@@ -69,8 +76,9 @@ export default ({
         title='billNumber'
         dataIndex='number'
         key='number'
-        width={100}
+        width={120}
         align='center'
+        fixed='left'
       />
       <Column
         title='congress'
@@ -78,11 +86,36 @@ export default ({
         key='congress'
         width={100}
         align='center'
+        fixed='left'
+      />
+      <Column
+        title='sponsor'
+        dataIndex='sponsor'
+        key='sponsor'
+        align='center'
+        width={300}
+        render={sponsor => <Tag color='geekblue'>{sponsor.name}</Tag>}
+      />
+      <Column
+        title='cosponsors'
+        dataIndex='cosponsor'
+        key='cosponsor'
+        width={300}
+        render={(_text, record: IRelationship) => (
+          <span>
+            {record.cosponsors.map((item: ICosponsor) => (
+              <Tag color='blue' key={item.cosponsor.uuid}>
+                {item.cosponsor.name}
+              </Tag>
+            ))}
+          </span>
+        )}
       />
       <Column
         title='committees'
         dataIndex='committees'
         key='committees'
+        width={300}
         render={committees =>
           committees.map((committee: ICommittee) => (
             <Tag key={committee.organization.uuid}>
@@ -95,6 +128,7 @@ export default ({
         title='constraint'
         dataIndex='constraint'
         key='constraint'
+        width={300}
         render={constraint =>
           constraint.map((constraint: IConstraint) => (
             <Tag key={constraint.organization.uuid}>
@@ -107,6 +141,7 @@ export default ({
         title='executor'
         dataIndex='executor'
         key='executor'
+        width={300}
         render={executor =>
           executor.map((executor: IExecutor) => (
             <Tag key={executor.organization.uuid}>
@@ -119,6 +154,7 @@ export default ({
         title='relatedObject'
         dataIndex='relatedObject'
         key='relatedObject'
+        width={300}
         render={relatedObject =>
           relatedObject.map((relatedObject: IRelatedObject) => (
             <Tag key={relatedObject.organization.uuid}>

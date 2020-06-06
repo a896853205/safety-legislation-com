@@ -15,6 +15,7 @@ export default ({ billNumber, billCongress }: IProp) => {
   const [constraintNum, setConstraintNum] = useState(0);
   const [executorNum, setExecutorNum] = useState(0);
   const [relatedObjectNum, setRelatedObjectNum] = useState(0);
+  const [cosponsorNum, setCosponsorNum] = useState(0);
 
   const querySCStatistics = useCallback(async (billNumber, billCongress) => {
     if (billNumber && billCongress) {
@@ -24,6 +25,7 @@ export default ({ billNumber, billCongress }: IProp) => {
           constraintNum,
           executorNum,
           relatedObjectNum,
+          cosponsorNum,
         },
       } = await axios.get(APIS.QUERY_BO_STATISTICS, {
         params: {
@@ -35,6 +37,7 @@ export default ({ billNumber, billCongress }: IProp) => {
       setConstraintNum(constraintNum);
       setExecutorNum(executorNum);
       setRelatedObjectNum(relatedObjectNum);
+      setCosponsorNum(cosponsorNum);
     }
   }, []);
 
@@ -48,6 +51,7 @@ export default ({ billNumber, billCongress }: IProp) => {
       constraintNum={constraintNum}
       executorNum={executorNum}
       relatedObjectNum={relatedObjectNum}
+      cosponsorNum={cosponsorNum}
     />
   );
 };

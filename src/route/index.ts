@@ -8,7 +8,6 @@ import BillAndPolicyOrganization from '@/relationship/bill-and-policy-organizati
 import Dictionary from '@/dictionary';
 import Home from '@/relationship/Home';
 import OrganizationAndBill from '@/relationship/organization-and-bill';
-import SponsorAndCosponsor from '@/relationship/sponsor-and-cosponsor';
 
 const config: RouteConfig[] = [
   {
@@ -19,10 +18,6 @@ const config: RouteConfig[] = [
         path: '/',
         component: Home,
         exact: true,
-      },
-      {
-        path: '/sponsorAndCosponsor',
-        component: SponsorAndCosponsor,
       },
       {
         path: '/organizationAndBill',

@@ -26,13 +26,6 @@ export default () => {
         </Menu.Item>
       </Menu.ItemGroup>
       <Menu.ItemGroup key='g1' title='关联关系预览'>
-        <Menu.Item key='1'>
-          <Link to='/sponsorAndCosponsor'>
-            <MenuSpan>
-              &lt;基本角色实例，基本角色关系类型，基本角色实例&gt;
-            </MenuSpan>
-          </Link>
-        </Menu.Item>
         <Menu.Item key='2'>
           <Link to='/organizationAndBill'>
             <MenuSpan>&lt;基本角色实例，基本角色类型，法案实例&gt;</MenuSpan>
